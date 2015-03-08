@@ -44,6 +44,7 @@ public class DigitalSectionGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(400, 450));
         getContentPane().setLayout(null);
 
         QuizBtn.setBackground(new java.awt.Color(0, 204, 102));
@@ -133,9 +134,21 @@ public class DigitalSectionGUI extends javax.swing.JFrame {
         Quiz playQuiz = new Quiz();
         String[] temp = playQuiz.choseRandomQuestion();
         userAnswer = new String[10];
-       for(int i = 0; i < 9; i++){
-       answer = JOptionPane.showInputDialog(temp[i]);
-       userAnswer[i] = answer;
+       for(int i = 0; i < 10; i++){
+           int counter = 0;
+           JOptionPane.showMessageDialog(null, counter);
+           answer = JOptionPane.showInputDialog(temp[i]);
+           
+           do{
+                if(answer == null || answer.equals("") || answer.equals(" ")){
+                    answer = JOptionPane.showInputDialog("please enter a valid answer: " + temp[i]);
+                    counter = 0;
+                 }
+                else{
+                counter = 1;
+                }
+           }while(counter == 0);
+           userAnswer[i] = answer;
        }
        
        playQuiz.setAnswer(userAnswer);
